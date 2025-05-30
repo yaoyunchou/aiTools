@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="title">表情包创作</view>
+
+  <view class="input-section">
+    <input class="text-input" placeholder="请输入文案，如：不想上班了" value="{{text}}" bindinput="onTextInput" />
+  </view>
+
+  <view class="character-section">
+    <view class="character-label">选择卡通人物：</view>
+    <scroll-view class="character-list" scroll-x="true">
+      <view class="character-item {{selectedCharacter === item ? 'selected' : ''}}" wx:for="{{characters}}" wx:key="{{item}}" data-character="{{item}}" bindtap="onCharacterSelect">
+        <text>{{item}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <button class="generate-btn" bindtap="onGenerate">生成表情包</button>
+
+  <scroll-view class="result-section" scroll-y="true">
+    <view class="result-label">生成结果：</view>
+    <view class="result-list">
+      <image wx:for="{{images}}" wx:key="index" src="{{item}}" class="result-img" mode="aspectFill" />
+    </view>
+  </scroll-view>
+</view> 

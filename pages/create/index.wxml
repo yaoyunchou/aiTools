@@ -1,0 +1,23 @@
+<view class="create-container">
+  <view class="create-header">
+    <text class="create-title">AI 创作中心</text>
+    <text class="create-subtitle">选择您想要的功能开始创作</text>
+  </view>
+  
+  <view class="create-list">
+    <view class="create-item" 
+          wx:for="{{createList}}" 
+          wx:key="id"
+          data-path="{{item.path}}"
+          bind:tap="handleItemClick">
+      <view class="create-item-content">
+        <t-icon name="{{item.icon}}" size="48rpx" />
+        <view class="create-item-info">
+          <text class="create-item-title">{{item.title}}</text>
+          <text class="create-item-desc">{{item.desc}}</text>
+        </view>
+      </view>
+      <t-icon name="chevron-right" size="32rpx" />
+    </view>
+  </view>
+</view> 

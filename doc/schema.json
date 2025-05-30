@@ -1,0 +1,21 @@
+{
+  "title": "活动页面",
+  "components": [
+    {
+      "type": "image",
+      "props": {
+        "src": "https://example.com/banner1.jpg",
+        "width": "100%",
+        "alt": "活动Banner1"
+      }
+    },
+    {
+      "type": "image",
+      "props": {
+        "src": "https://example.com/banner2.jpg",
+        "width": "100%",
+        "alt": "活动Banner2"
+      }
+    }
+  ]
+} 
