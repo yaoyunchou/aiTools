@@ -82,4 +82,59 @@ Page({
       }
     }
   },
+
+  async handleAuth() {
+
+    try {
+      wx.showLoading({ title: '授权中' });
+      const { code } = await wx.login();
+      // console.log('---code', code)
+      const result = await request('/api/v1/auth/wechat/login',"POST",{
+        code,
+        phone: this.data.phoneNumber
+      })
+
+
+      console.log('result===============', result);
+      if(result.code ===0) {
+        wx.setStorageSync('access_token', result.data.token);
+        wx.setStorageSync('userInfo', result.data.user);
+        wx.showToast({
+            title: '授权成功',
+            icon: 'success'
+          });
+      
+     
+  
+      
+        // 返回原页面
+        if (this.data.redirectUrl) {
+          const barUrlList = ['/pages/index/index', '/pages/tasks/tasks', '/pages/profile/profile'];
+          const redirectUrl = unescape(this.data.redirectUrl);
+          if(barUrlList.includes(redirectUrl)) {
+            wx.switchTab({
+              url: redirectUrl
+            });
+            
+          } else {
+            wx.navigateTo({
+              url: redirectUrl
+            });
+          }
+          
+        } else {
+          wx.navigateBack();
+        }
+      }
+   
+    } catch (error) {
+      console.error('授权失败:', error);
+      wx.showToast({
+        title: '授权失败',
+        icon: 'none'
+      });
+    } finally {
+      wx.hideLoading();
+    }
+  }
 });

@@ -8,7 +8,7 @@ Page({
       gender: 0,
       birth: '',
       address: [],
-      introduction: '',
+      remark: '',
       photos: [],
     },
     genderOptions: [
@@ -48,19 +48,14 @@ Page({
   },
 
   getPersonalInfo() {
-    request('/api/genPersonalInfo').then((res) => {
-      this.setData(
-        {
-          personInfo: res.data.data,
-        },
-        () => {
-          const { personInfo } = this.data;
-          this.setData({
-            addressText: `${areaList.provinces[personInfo.address[0]]} ${areaList.cities[personInfo.address[1]]}`,
-          });
-        },
-      );
-    });
+    const userInfo = wx.getStorageSync('userInfo')
+
+    this.setData({
+          personInfo: {...userInfo,
+            gender: Number(userInfo.gender)
+
+          },
+    })
   },
 
   getAreaOptions(data, filter) {
@@ -118,9 +113,12 @@ Page({
       [`personInfo.${mode}`]: value,
     });
     if (mode === 'address') {
+      console.log('---label', label)
       this.setData({
         addressText: label.join(' '),
+        'personInfo.addressText': label.join(' ')
       });
+     
     }
   },
 
@@ -140,7 +138,7 @@ Page({
   },
 
   onIntroductionChange(e) {
-    this.personInfoFieldChange('introduction', e);
+    this.personInfoFieldChange('remark', e);
   },
 
   onPhotosRemove(e) {
@@ -167,7 +165,17 @@ Page({
     });
   },
 
-  onSaveInfo() {
-    // console.log(this.data.personInfo);
+  async onSaveInfo() {
+    console.log(this.data.personInfo);
+    const result = await request(`/api/v1/user/${this.data.personInfo.id}`,"PUT",{
+       ... this.data.personInfo
+    })
+    if(result.code === 0) {
+        wx.setStorageSync('userInfo', this.data.personInfo);
+      wx.showToast({
+        title: '修改成功',
+        icon: 'none'
+      });
+    }
   },
 });

@@ -50,6 +50,11 @@
       "pages": ["index"]
     },
     {
+      "root": "pages/create/edit-image",
+      "name": "edit-image",
+      "pages": ["index"]
+    },
+    {
       "root": "pages/create/remove-bg",
       "name": "remove-bg",
       "pages": ["index"]

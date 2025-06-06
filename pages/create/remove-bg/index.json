@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "图片去背景"
+  "navigationBarTitleText": "图片去背景",
+  "usingComponents": {
+    "t-upload": "tdesign-miniprogram/upload/upload"
+  }
 } 

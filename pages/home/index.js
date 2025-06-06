@@ -6,6 +6,7 @@ import request from '~/api/request';
 
 Page({
   data: {
+    tabValue: 'recommend',
     enable: false,
     swiperList: [],
     cardInfo: [],
@@ -13,24 +14,14 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
+    focusCardInfo:[],
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
   },
   // 生命周期
   async onReady() {
-    const [cardRes, swiperRes] = await Promise.all([
-      request('/api/v1/creations/public?page=1&pageSize=10').then((res) => res.data),
-      request('/api/v1/creations/public?page=1&pageSize=10').then((res) => res.data),
-    ]);
-
-
-    console.log(cardRes, swiperRes)
-    this.setData({
-      cardInfo: cardRes.data,
-      focusCardInfo: cardRes.data.slice(0, 3),
-      swiperList: swiperRes.data,
-    });
+    await this.cardInfoOnLoad()
   },
   onLoad(option) {
     if (wx.getUserProfile) {
@@ -51,22 +42,59 @@ Page({
   onRefresh() {
     this.refresh();
   },
-  async refresh() {
-    this.setData({
-      enable: true,
-    });
-    const [cardRes, swiperRes] = await Promise.all([
-      request('/api/v1/creations/public?page=1&pageSize=10').then((res) => res.data),
-      request('/api/v1/creations/public?page=1&pageSize=10').then((res) => res.data),
+  async focusCardInfoOnLoad() {
+    const userInfo = wx.getStorageSync('userInfo')  
+    if(userInfo.id) {
+      const [cardRes] = await Promise.all([
+        request(`/api/v1/creations?page=1&pageSize=100&id=${userInfo.id}`).then((res) => res.data),
+      ]);
+      this.setData({
+        enable: false,
+        focusCardInfo: cardRes.list,
+      });
+    }else{
+      wx.navigateTo({
+        url: '/pages/login/index',
+      });
+    } 
+  },
+
+  async cardInfoOnLoad() {
+    const [cardRes] = await Promise.all([
+      request('/api/v1/creations/public?page=1&pageSize=100').then((res) => res.data),
     ]);
-    console.log(cardRes, swiperRes)
+    console.log(cardRes)
     setTimeout(() => {
       this.setData({
         enable: false,
         cardInfo: cardRes.list,
-        swiperList: swiperRes.list[0].images,
+        swiperList: cardRes.list[0].images,
       });
     }, 1500);
+
+  },
+  async onChange(e) {
+    if(e.detail.value === 'follow' && this.data.focusCardInfo.length === 0) {
+      await this.focusCardInfoOnLoad()
+    } else {
+      this.setData({
+        tabValue: e.detail.value,
+      })
+    }
+    
+  },
+  async refresh() {
+    this.setData({
+      enable: true,
+    });
+    if(this.data.tabValue === 'recommend') {
+      await this.cardInfoOnLoad()
+
+    } else {
+      await this.focusCardInfoOnLoad()
+      
+    }
+  
   },
   showOperMsg(content) {
     Message.success({

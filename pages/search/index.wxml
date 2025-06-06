@@ -51,7 +51,7 @@
         </view>
       </view>
     </view> -->
-  </view>
+  <!-- </view> -->
   <t-dialog
     visible="{{dialogShow}}"
     content="{{dialog.message}}"

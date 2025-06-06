@@ -32,7 +32,10 @@
 │   ├── chat/        # 聊天页面
 │   ├── login/       # 登录页面
 │   ├── setting/     # 设置中心
-│   └── release/     # 信息发布
+│   ├── release/     # 信息发布
+│   └── create/      # AI创作工具
+│       ├── emoji/   # 表情包创作
+│       └── remove-bg/ # 图片去背景
 ├── static/          # 静态资源
 ├── utils/           # 工具函数
 ├── app.js           # 小程序入口文件
@@ -65,6 +68,7 @@
   - 数据中心 (pages/dataCenter)
   - 设置中心 (pages/setting)
   - 信息发布 (pages/release)
+  - AI创作工具 (pages/create)
 
 ### 3. 自定义组件
 - 底部导航栏 (custom-tab-bar)
@@ -124,6 +128,16 @@ npm install
 
 <img width="375" alt="image" src="https://tdesign.gtimg.com/miniprogram/template/message-1.png">
 
+### AI创作工具
+
+#### 1. 表情包创作
+表情包创作功能允许用户输入文案，选择卡通人物，快速生成个性化表情包。
+
+#### 2. 图片去背景
+图片去背景功能允许用户上传图片，一键去除图片背景，生成透明背景的图片。
+- 支持从相册或拍照获取图片
+- 一键去除背景
+- 支持预览和保存结果图片到相册
 
 ## 开发预览
 ### 目录结构（TODO: 生成目录结构树）

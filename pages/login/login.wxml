@@ -28,7 +28,7 @@
       </t-input>
     </view>
 
-    <view class="login__tips">未注册的手机号验证通过后将自动注册</view>
+    <!-- <view class="login__tips">未注册的手机号验证通过后将自动注册</view>
 
     <t-radio-group allow-uncheck borderless value="{{radioValue}}" bind:change="onCheckChange">
       <t-radio
@@ -38,17 +38,23 @@
         t-class-icon="radio-class-icon"
         t-class-label="radio-class-label"
       />
-    </t-radio-group>
+    </t-radio-group> -->
 
-    <view class="login__button">
+    <!-- <view class="login__button">
       <t-button theme="primary" size="large" block disabled="{{!isSubmit}}" bindtap="login">
         {{ isPasswordLogin ? '登录' : '验证并登录' }}
       </t-button>
+    </view> -->
+    <view class="login__button">
+       <!-- <button class="auth-btn" bindtap="handleAuth" type="primary">确认授权</button> -->
+       <t-button theme="primary" size="large" block disabled="{{!isPhoneNumber}}" bindtap="handleAuth">
+          一键登录
+       </t-button>
     </view>
 
-    <view class="login__password--forget" wx:if="{{isPasswordLogin}}">
+    <!-- <view class="login__password--forget" wx:if="{{isPasswordLogin}}">
       <text>忘记密码？</text>
       <t-link theme="primary" size="small">找回密码</t-link>
-    </view>
+    </view> -->
   </view>
 </view>

@@ -42,12 +42,15 @@ Page({
   },
 
   onLoad() {
-    this.getServiceList();
+    // this.getServiceList();
+    this.setData({
+        personalInfo:  wx.getStorageSync('userInfo')
+    })
   },
 
   async onShow() {
     const Token = wx.getStorageSync('access_token');
-    const personalInfo = await this.getPersonalInfo();
+    const personalInfo =  await this.getPersonalInfo()
 
     if (Token) {
       this.setData({
@@ -65,8 +68,13 @@ Page({
   },
 
   async getPersonalInfo() {
-    const info = await request('/api/genPersonalInfo').then((res) => res.data.data);
-    return info;
+    const {id} = wx.getStorageSync("userInfo")
+    const info = await request(`/api/v1/user/${id}`)
+    if(info.code === 0) {
+      wx.setStorageSync('userInfo',  info.data);
+      return info.data;
+
+    }
   },
 
   onLogin(e) {

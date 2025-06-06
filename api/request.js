@@ -24,10 +24,15 @@ function request(url, method = 'GET', data = {}) {
       success(res) {
         setTimeout(() => {
           // HTTP状态码为0才视为成功
-          if (res.statusCode === 200) {
+          if (200 <= res.statusCode && res.statusCode < 300) {
             if(res?.data && res?.data.code === 0) {
               resolve(res.data);
             }
+          }else if(res.statusCode === 401 || res.statusCode === 403){
+            // 定位到login页面进行登录
+            wx.switchTab({
+              url: 'pages/login/login'
+            });
           } else {
             // wx.request的特性，只要有响应就会走success回调，所以在这里判断状态，非200的均视为请求失败
             reject(res);

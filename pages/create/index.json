@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "AI 创作中心",
+  "navigationBarTitleText": "模板创作中心",
   "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon"
   }

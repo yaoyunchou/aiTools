@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/create/emoji/index",
+          "pathName": "pages/create/emoji/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/create/index",
           "pathName": "pages/create/index",
           "query": "",
