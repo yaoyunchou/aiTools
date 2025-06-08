@@ -9,6 +9,13 @@ Page({
         path: '/pages/create/emoji/index'
       },
       {
+        id: 'emoji',
+        title: '表情包创作',
+        icon: 'emoji',
+        desc: '快速制作有趣的表情包',
+        path: '/pages/create/template-image/index'
+      },
+      {
         id: 'editImage',
         title: '修改图片(开发中）',
         icon: 'image',

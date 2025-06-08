@@ -3,7 +3,15 @@ Component({
     url: String,
     desc: String,
     tags: Array,
+    index: Number,
   },
   data: {},
-  methods: {},
+  methods: {
+    onCardTap() {
+      this.triggerEvent('cardtap', { index: this.properties.index });
+    },
+    onShareTap() {
+      this.triggerEvent('sharetap', { index: this.properties.index });
+    },
+  },
 });

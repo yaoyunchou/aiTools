@@ -31,6 +31,7 @@ Page({
   },
 
   async onGenerate() {
+  
     try {
       const character = this.data.customCharacter || this.data.selectedCharacter;
       

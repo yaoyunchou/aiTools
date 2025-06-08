@@ -1,6 +1,7 @@
 <nav nav-type="search" />
 <view class="home-container">
   <view class="home-content">
+    <!-- tip  长按图片可以下载和分享哟！ -->
     <t-tabs defaultValue="recommend" bind:change="onChange">
       <t-tab-panel label="推荐" value="recommend">
         <t-pull-down-refresh
@@ -21,6 +22,9 @@
               desc="{{item.prompt}}"
               url="{{item.images[0]}}"
               tags="{{[]}}"
+              index="{{index}}"
+              bind:cardtap="onCardTap"
+              bind:sharetap="onShareTap"
             />
           </view>
         </t-pull-down-refresh>
@@ -33,6 +37,9 @@
             desc="{{item.prompt}}"
             url="{{item.images[0]}}"
             tags="{{[]}}"
+            index="{{index}}"
+            bind:cardtap="onCardTap"
+            bind:sharetap="onShareTap"
           />
         </view>
       </t-tab-panel>

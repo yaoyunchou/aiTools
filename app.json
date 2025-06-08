@@ -48,6 +48,10 @@
       "root": "pages/create/emoji",
       "name": "emoji",
       "pages": ["index"]
+    }, {
+      "root": "pages/create/template-image",
+      "name": "template-image",
+      "pages": ["index"]
     },
     {
       "root": "pages/create/edit-image",

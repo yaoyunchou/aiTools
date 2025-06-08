@@ -4,6 +4,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/create/template-image/index",
+          "pathName": "pages/create/template-image/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/home/index",
+          "pathName": "pages/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/create/emoji/index",
           "pathName": "pages/create/emoji/index",
           "query": "",
@@ -82,5 +96,5 @@
   "setting": {
     "compileHotReLoad": true
   },
-  "libVersion": "3.8.5"
+  "libVersion": "3.7.12"
 }

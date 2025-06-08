@@ -68,7 +68,13 @@ Page({
   },
 
   async getPersonalInfo() {
-    const {id} = wx.getStorageSync("userInfo")
+    const {id} = wx.getStorageSync("userInfo") || {}
+    if(!id) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      });
+      return;
+    };
     const info = await request(`/api/v1/user/${id}`)
     if(info.code === 0) {
       wx.setStorageSync('userInfo',  info.data);

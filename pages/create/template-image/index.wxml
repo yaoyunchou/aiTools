@@ -1,0 +1,82 @@
+<view class="template-image-container">
+  <!-- 画布区 -->
+  <canvas id="mainCanvas" type="2d" style="width:100vw;height:100vw;"></canvas>
+
+  <!-- 可编辑文案和二维码（canvas绘制时用，页面可做预览） -->
+  <view class="canvas-preview" wx:if="{{showPreview}}">
+    <image class="main-image" src="{{mainImage}}" mode="aspectFill" />
+    <view class="text-group">
+      <text class="title">{{titleText}}</text>
+      <text class="subtitle">{{subtitleText}}</text>
+      <text class="desc">{{descText}}</text>
+    </view>
+    <image wx:if="{{showQrcode}}" class="qrcode" src="{{qrcodeUrl}}" />
+  </view>
+
+  <!-- Tab 区域 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab==='image'?'active':''}}" bindtap="onTabChange" data-tab="image">换图</view>
+    <view class="tab-item {{activeTab==='text'?'active':''}}" bindtap="onTabChange" data-tab="text">换文字</view>
+    <view class="tab-item {{activeTab==='sticker'?'active':''}}" bindtap="onTabChange" data-tab="sticker">版式贴纸</view>
+    <view class="tab-item {{activeTab==='caption'?'active':''}}" bindtap="onTabChange" data-tab="caption">发圈文案</view>
+    <view class="tab-item {{activeTab==='qrcode'?'active':''}}" bindtap="onTabChange" data-tab="qrcode">去二维码</view>
+  </view>
+
+  <!-- Tab 内容区 -->
+  <view class="tab-content">
+    <!-- 换图 -->
+    <view class="image-box" wx:if="{{activeTab==='image'}}">
+      <view class="upload-btn" bindtap="onChooseImage">
+        <text class="plus">+</text>
+      </view>
+      <image wx:for="{{images}}" 
+        wx:key="item"
+        data-path="{{item}}"
+        bind:tap="handleImageItemClick"
+        style="width:22vw;height:22vw;margin-bottom:12rpx;"
+        src="{{item}}"
+        class="{{selectedImage === item ? 'selected' : ''}}"
+      />
+    </view>
+    <!-- 换文字 -->
+    <view wx:if="{{activeTab==='text'}}">
+      <view class="form-group">
+        <text>标题：</text>
+        <input value="{{titleText}}" bindinput="onTitleInput" placeholder="请输入标题" />
+      </view>
+      <view class="form-group">
+        <text>副标题：</text>
+        <input value="{{subtitleText}}" bindinput="onSubtitleInput" placeholder="请输入副标题" />
+      </view>
+      <view class="form-group">
+        <text>描述：</text>
+        <input value="{{descText}}" bindinput="onDescInput" placeholder="请输入描述" />
+      </view>
+    </view>
+    <!-- 版式贴纸 -->
+    <view wx:if="{{activeTab==='sticker'}}">
+      <text>选择贴纸（示例）：</text>
+      <scroll-view scroll-x style="white-space:nowrap;margin-top:12rpx;">
+        <image src="/static/sticker1.png" class="sticker-thumb" bindtap="onChooseSticker" data-sticker="/static/sticker1.png" />
+        <image src="/static/sticker2.png" class="sticker-thumb" bindtap="onChooseSticker" data-sticker="/static/sticker2.png" />
+        <image src="/static/sticker3.png" class="sticker-thumb" bindtap="onChooseSticker" data-sticker="/static/sticker3.png" />
+      </scroll-view>
+    </view>
+    <!-- 发圈文案 -->
+    <view wx:if="{{activeTab==='caption'}}">
+      <textarea value="{{captionText}}" bindinput="onCaptionInput" placeholder="请输入发圈文案" style="width:100%;min-height:80rpx;" />
+    </view>
+    <!-- 去二维码 -->
+    <view wx:if="{{activeTab==='qrcode'}}">
+      <switch checked="{{showQrcode}}" bindchange="onQrcodeSwitch" />
+      <text style="margin-left:16rpx;">显示二维码</text>
+      <image src="{{qrcodeUrl}}" style="width:96rpx;height:96rpx;margin-left:24rpx;" wx:if="{{showQrcode}}" />
+    </view>
+  </view>
+
+  <!-- 底部操作按钮 -->
+  <view class="footer-bar">
+    <button class="save-btn" bindtap="onSave">保存图片</button>
+    <button class="share-btn" bindtap="onShare">发给好友</button>
+  </view>
+</view> 

@@ -30,9 +30,13 @@ function request(url, method = 'GET', data = {}) {
             }
           }else if(res.statusCode === 401 || res.statusCode === 403){
             // 定位到login页面进行登录
-            wx.switchTab({
-              url: 'pages/login/login'
+            // wx.switchTab({
+            //   url: 'pages/login/login'
+            // });
+            wx.redirectTo({
+              url: '/pages/login/login'
             });
+            reject(res);
           } else {
             // wx.request的特性，只要有响应就会走success回调，所以在这里判断状态，非200的均视为请求失败
             reject(res);
