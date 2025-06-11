@@ -9,6 +9,9 @@
           wx:for="{{createList}}" 
           wx:key="id"
           data-path="{{item.path}}"
+          data-type="{{item.type}}"
+          data-id="{{item.id}}"
+          data-title="{{item.title}}"
           bind:tap="handleItemClick">
       <view class="create-item-content">
         <t-icon name="{{item.icon}}" size="48rpx" />

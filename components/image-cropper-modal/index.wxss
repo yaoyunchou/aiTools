@@ -1,0 +1,30 @@
+.cropper-modal {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  flex-direction: column;
+  z-index: 100000000;
+}
+.cropper-mask {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
+.cropper-content {
+ flex:1;
+  /* left: 50%; top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  background: #fff;
+  border-radius: 8px;
+  /* padding: 20px; */
+}
+.cropper-actions {
+  position: absolute;
+  left:0;
+  bottom: 140px;
+  display: flex;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10000000;
+  margin-top: 10px;
+} 

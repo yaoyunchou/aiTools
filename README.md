@@ -157,6 +157,12 @@ npm install
    - 自定义分享标题和图片
    - 添加卡片分享按钮，点击即可分享当前内容
 
+### 2024-06-09
+1. 【兼容性升级】个人中心上传头像功能，pages/my/index.js：
+   - 将已停止维护的 `wx.chooseImage` 替换为官方推荐的 `wx.chooseMedia`。
+   - 适配新 API，图片路径获取方式由 `res.tempFilePaths[0]` 改为 `res.tempFiles[0].tempFilePath`。
+   - 参考：[微信小程序 chooseImage 停止维护公告](https://developers.weixin.qq.com/miniprogram/dev/api/media-picture/wx.chooseImage.html)
+
 ## 开发预览
 ### 目录结构（TODO: 生成目录结构树）
 

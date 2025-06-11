@@ -1,25 +1,13 @@
 <view class="template-image-container">
   <!-- 画布区 -->
   <canvas id="mainCanvas" type="2d" style="width:100vw;height:100vw;"></canvas>
-
-  <!-- 可编辑文案和二维码（canvas绘制时用，页面可做预览） -->
-  <view class="canvas-preview" wx:if="{{showPreview}}">
-    <image class="main-image" src="{{mainImage}}" mode="aspectFill" />
-    <view class="text-group">
-      <text class="title">{{titleText}}</text>
-      <text class="subtitle">{{subtitleText}}</text>
-      <text class="desc">{{descText}}</text>
-    </view>
-    <image wx:if="{{showQrcode}}" class="qrcode" src="{{qrcodeUrl}}" />
-  </view>
-
   <!-- Tab 区域 -->
   <view class="tab-bar">
     <view class="tab-item {{activeTab==='image'?'active':''}}" bindtap="onTabChange" data-tab="image">换图</view>
     <view class="tab-item {{activeTab==='text'?'active':''}}" bindtap="onTabChange" data-tab="text">换文字</view>
-    <view class="tab-item {{activeTab==='sticker'?'active':''}}" bindtap="onTabChange" data-tab="sticker">版式贴纸</view>
+    <!-- <view class="tab-item {{activeTab==='sticker'?'active':''}}" bindtap="onTabChange" data-tab="sticker">版式贴纸</view>
     <view class="tab-item {{activeTab==='caption'?'active':''}}" bindtap="onTabChange" data-tab="caption">发圈文案</view>
-    <view class="tab-item {{activeTab==='qrcode'?'active':''}}" bindtap="onTabChange" data-tab="qrcode">去二维码</view>
+    <view class="tab-item {{activeTab==='qrcode'?'active':''}}" bindtap="onTabChange" data-tab="qrcode">去二维码</view> -->
   </view>
 
   <!-- Tab 内容区 -->
@@ -40,17 +28,18 @@
     </view>
     <!-- 换文字 -->
     <view wx:if="{{activeTab==='text'}}">
-      <view class="form-group">
-        <text>标题：</text>
-        <input value="{{titleText}}" bindinput="onTitleInput" placeholder="请输入标题" />
+      <view class="color-picker">
+        <text>设置文字颜色:</text>
+        <block wx:for="{{textColorOptions}}" wx:key="color">
+          <view class="color-option {{textColor === item.color ? 'selected' : ''}}" style="background:{{item.color}};{{item.color === '#fff' ? 'border:1px solid #ccc;' : ''}}" data-color="{{item.color}}" bindtap="onColorPick"></view>
+        </block>
       </view>
       <view class="form-group">
-        <text>副标题：</text>
-        <input value="{{subtitleText}}" bindinput="onSubtitleInput" placeholder="请输入副标题" />
-      </view>
-      <view class="form-group">
-        <text>描述：</text>
-        <input value="{{descText}}" bindinput="onDescInput" placeholder="请输入描述" />
+        <view class="desc-text-list">
+          <block wx:for="{{descTextOptions}}" wx:key="item">
+            <view class="desc-text-item {{descText === item ? 'selected' : ''}}" bindtap="onDescTextPick" data-text="{{item}}">{{item}}</view>
+          </block>
+        </view>
       </view>
     </view>
     <!-- 版式贴纸 -->
@@ -79,4 +68,11 @@
     <button class="save-btn" bindtap="onSave">保存图片</button>
     <button class="share-btn" bindtap="onShare">发给好友</button>
   </view>
+  <image-cropper-modal
+    visible="{{showCropper}}"
+    src="{{cropperSrc}}"
+    aspect-ratio="1"
+    bind:crop="onCropperDone"
+    bind:cancel="onCropperCancel"
+  />
 </view> 

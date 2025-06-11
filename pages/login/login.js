@@ -88,7 +88,7 @@ Page({
     try {
       wx.showLoading({ title: '授权中' });
       const { code } = await wx.login();
-      // console.log('---code', code)
+      console.log('---code', code)
       const result = await request('/api/v1/auth/wechat/login',"POST",{
         code,
         phone: this.data.phoneNumber
@@ -109,7 +109,7 @@ Page({
       
         // 返回原页面
         if (this.data.redirectUrl) {
-          const barUrlList = ['/pages/index/index', '/pages/tasks/tasks', '/pages/profile/profile'];
+          const barUrlList = ['/pages/home/index', '/pages/my/index', '/pages/create/index'];
           const redirectUrl = unescape(this.data.redirectUrl);
           if(barUrlList.includes(redirectUrl)) {
             wx.switchTab({

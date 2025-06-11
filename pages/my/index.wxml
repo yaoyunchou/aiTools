@@ -6,7 +6,7 @@
   <view class="my-info">
     <t-cell-group>
       <t-cell wx:if="{{isLoad}}" bordered="{{false}}">
-        <t-avatar image="{{personalInfo.avatar}}" slot="left-icon" size="large" />
+        <t-avatar image="{{personalInfo.avatar}}" slot="left-icon" size="large" bindtap="onChangeAvatar" />
         <view class="my-info__person" slot="description">
           <view class="name">{{personalInfo.username}}</view>
           <view class="tags">
@@ -72,4 +72,18 @@
       bindclick="onEleClick"
     />
   </t-cell-group> -->
+
+  <!-- 头像更换方式选择 ActionSheet -->
+  <t-action-sheet id="t-action-sheet" usingCustomNavbar bind:selected="handleSelected" />
+
+  <!-- 公共图片裁剪弹框 -->
+  <image-cropper-modal
+    visible="{{showCropper}}"
+    wx:if="{{showCropper}}"
+    disable_ratio="{{true}}"
+    src="{{cropperSrc}}"
+    aspect-ratio="{{cropperRatio}}"
+    bind:crop="onCropperDone"
+    bind:cancel="onCropperCancel"
+  />
 </view>

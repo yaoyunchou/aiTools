@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "打卡",
+    "usingComponents": {
+      "image-cropper-modal": "/components/image-cropper-modal/index"
+    }
+  }
+  

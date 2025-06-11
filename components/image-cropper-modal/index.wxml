@@ -1,0 +1,22 @@
+<view wx:if="{{visible}}" class="cropper-modal">
+  <view class="cropper-mask" bindtap="onCancel"></view>
+  <view class="cropper-content">
+    <image-cropper
+      id="cropper"
+      disable_ratio="{{disable_ratio}}"
+      imgSrc="{{src}}"
+      width="300"
+      height="300"
+      scale="1"
+      cut-x="0"
+      cut-y="0"
+      cut-width="{{cutWidth}}"
+      cut-height="{{cutHeight}}"
+      bind:load="onCropperLoad"
+    />
+    <view class="cropper-actions">
+      <button size="mini" bindtap="onCancel">取消</button>
+      <button size="mini" type="primary" bindtap="onCrop">完成</button>
+    </view>
+  </view>
+</view> 
