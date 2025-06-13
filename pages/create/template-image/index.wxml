@@ -3,6 +3,8 @@
   <canvas id="mainCanvas" type="2d" style="width:100vw;height:100vw;"></canvas>
   <!-- Tab 区域 -->
   <view class="tab-bar">
+
+    <view class="tab-item {{activeTab==='config'?'active':''}}" bindtap="onTabChange" data-tab="config">配置</view>
     <view class="tab-item {{activeTab==='image'?'active':''}}" bindtap="onTabChange" data-tab="image">换图</view>
     <view class="tab-item {{activeTab==='text'?'active':''}}" bindtap="onTabChange" data-tab="text">换文字</view>
     <!-- <view class="tab-item {{activeTab==='sticker'?'active':''}}" bindtap="onTabChange" data-tab="sticker">版式贴纸</view>
@@ -12,6 +14,33 @@
 
   <!-- Tab 内容区 -->
   <view class="tab-content">
+    <!-- 配置 -->
+    <view class="config-box" wx:if="{{activeTab==='config'}}">
+      <view class="config-title">配置</view>
+      <view class="config-list">
+        <view class="config-item">
+          <view class="config-label">显示头像</view>
+          <switch class="config-switch" checked="{{showAvatar}}" bindchange="onSwitchChange" data-key="showAvatar" />
+        </view>
+        <view class="config-item">
+          <view class="config-label">{{titleText}}</view>
+          <switch class="config-switch" checked="{{showTitleText}}" bindchange="onSwitchChange" data-key="showTitleText" />
+        </view>
+        <view class="config-item">
+          <view class="config-label">{{subtitleText}}</view>
+          <switch class="config-switch" checked="{{showSubtitleText}}" bindchange="onSwitchChange" data-key="showSubtitleText" />
+        </view>
+        <view class="config-item">
+          <view class="config-label">{{descText}}</view>
+          <switch class="config-switch" checked="{{showDescText}}" bindchange="onSwitchChange" data-key="showDescText" />
+        </view>
+      
+        <!-- <view class="config-item">
+          <view class="config-label">{{day}}</view>
+          <switch class="config-switch" checked="{{showDay}}" bindchange="onSwitchChange" data-key="showDay" />
+        </view> -->
+      </view>
+    </view>
     <!-- 换图 -->
     <view class="image-box" wx:if="{{activeTab==='image'}}">
       <view class="upload-btn" bindtap="onChooseImage">

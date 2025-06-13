@@ -9,7 +9,7 @@
     <button open-type="share" class="home-card__share" catchtap="onShareTap">
       <t-icon name="share" size="24rpx" color="#0052d9" />
     </button>
-    <button open-type="" class="home-card__share" >
+    <!-- <button open-type="contact" class="home-card__share" >
       <t-icon name="share" size="24rpx" color="#0052d9" />
-    </button>
+    </button> -->
 </view>

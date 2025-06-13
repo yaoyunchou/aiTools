@@ -33,8 +33,13 @@ function request(url, method = 'GET', data = {}) {
             // wx.switchTab({
             //   url: 'pages/login/login'
             // });
-            wx.redirectTo({
-              url: '/pages/login/login'
+            // 获取当前页面路径
+            const pages = getCurrentPages()
+            const currentPage = pages[pages.length - 1]
+            const currentPageUrl = currentPage.route
+            console.log('currentPageUrl!!', currentPageUrl)
+            wx.navigateTo({
+              url: '/pages/login/login?redirectUrl=' + encodeURIComponent(currentPageUrl)
             });
             reject(res);
           } else {

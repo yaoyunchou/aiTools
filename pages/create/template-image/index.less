@@ -201,4 +201,69 @@
   border: 2rpx solid #ff9800;
   background: #fffbe6;
   color: #d35400;
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-height: 100vh;
+}
+.left-panel {
+  width: 340rpx;
+  min-width: 260rpx;
+  background: #f7f7f7;
+  padding: 32rpx 0 32rpx 32rpx;
+  box-sizing: border-box;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.config-box {
+  background: #fff;
+  border-radius: 18rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+  padding: 32rpx 24rpx;
+  margin-bottom: 32rpx;
+  min-width: 220rpx;
+}
+.config-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+.config-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+.config-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48rpx;
+  background: #f6f7fa;
+  border-radius: 12rpx;
+  padding: 12rpx 20rpx;
+}
+.config-label {
+  font-size: 28rpx;
+  color: #444;
+  font-weight: 500;
+  max-width: 60%;
+  word-break: break-all;
+}
+.config-switch {
+  margin-left: 16rpx;
 } 

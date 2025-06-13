@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/create/index",
+          "pathName": "pages/create/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/create/template-image/index",
           "pathName": "pages/create/template-image/index",
           "query": "",

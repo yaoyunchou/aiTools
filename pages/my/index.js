@@ -79,7 +79,7 @@ Page({
     const {id} = wx.getStorageSync("userInfo") || {}
     if(!id) {
       wx.navigateTo({
-        url: '/pages/login/login',
+        url: '/pages/login/login?redirectUrl=' + encodeURIComponent('/pages/my/index'),
       });
       return;
     };
@@ -93,7 +93,7 @@ Page({
 
   onLogin(e) {
     wx.navigateTo({
-      url: '/pages/login/login',
+      url: '/pages/login/login?redirectUrl=' + encodeURIComponent('/pages/my/index'),
     });
   },
 

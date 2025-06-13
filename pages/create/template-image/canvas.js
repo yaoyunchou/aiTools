@@ -10,8 +10,11 @@ export const drawCanvas2d =  async (ctx, canvas,config) =>{
     if (config.mainImage) {
       await drawImageToCanvas(ctx, canvas, config.mainImage, 0, 0, 512, 512);
     }
-    if (config.avatar) {
+    if (config.showAvatar && config.avatar) {
       await drawRoundImage(ctx, canvas, config.avatar, 18, 18, 72, 72, 43);
+    }
+    if (config.showQrcode && config.qrcodeUrl) {
+      await drawImageToCanvas(ctx, canvas, config.qrcodeUrl, 384, 384, 96, 96);
     }
     // 完成
     // 贴纸
@@ -33,37 +36,40 @@ export const drawCanvas2d =  async (ctx, canvas,config) =>{
     ctx.fillText(`${date.getFullYear()}.${date.getMonth() + 1}`, 431, 75);
 
     // 标题
-    ctx.font = '20px sans-serif';
-    ctx.fillStyle = config.textColor;
-    ctx.textAlign = 'left';
-    
-    ctx.fillText(config.titleText, 10, 130);
-    // 天數
-    ctx.font = '36px sans-serif';
-    ctx.fillStyle = config.textColor;
-    ctx.textAlign = 'left';
-    
-    ctx.fillText(config.day, 10, 185);
-    // 单位
-    ctx.font = '12px sans-serif';
-    ctx.fillStyle = config.textColor;
-    ctx.textAlign = 'left';
-    
-    ctx.fillText(config.unit, 41, 185);
-
+    if(config.showTitleText && config.titleText) {
+      ctx.font = '20px sans-serif';
+      ctx.fillStyle = config.textColor;
+      ctx.textAlign = 'left';
+      ctx.fillText(config.titleText, 10, 130);
+        // 天數
+      ctx.font = '36px sans-serif';
+      ctx.fillStyle = config.textColor;
+      ctx.textAlign = 'left';
+      ctx.fillText(config.day, 10, 185);
+      // 单位
+      ctx.font = '12px sans-serif';
+      ctx.fillStyle = config.textColor;
+      ctx.textAlign = 'left';
+      ctx.fillText(config.unit, 41, 185);
+    }
+  
     // 副标题
-    ctx.font = '20px sans-serif';
-    
-    ctx.fillText(config.subtitleText, 10, 241);
-    // time
-    ctx.font = '36px sans-serif';
-    ctx.fillText(config.timeStr, 10, 284);
+    if(config.showSubtitleText && config.subtitleText) {
+      ctx.font = '20px sans-serif';
+      ctx.fillText(config.subtitleText, 10, 241);
+        // time
+      ctx.font = '36px sans-serif';
+      ctx.fillText(config.timeStr, 10, 284);
+    }
+  
     // // 排名
     // ctx.font = '16px sans-serif';
     // ctx.fillText(config.rankText, 12,310);
     // 描述
-    ctx.font = '20px sans-serif';
-    drawWrappedText(ctx, config.descText, 10, 450, 480, 28);
+    if(config.showDescText && config.descText) {
+      ctx.font = '20px sans-serif';
+      drawWrappedText(ctx, config.descText, 10, 450, 480, 28);
+    }
     // 二维码
     // if (config.showQrcode && config.qrcodeUrl) {
     //   await drawImageToCanvas(ctx, canvas, config.qrcodeUrl, 384, 384, 96, 96);

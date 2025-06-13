@@ -10,6 +10,7 @@ Page({
     enable: false,
     swiperList: [],
     cardInfo: [],
+    columns: [[], []], // 新增两列数据
     // 发布
     motto: 'Hello World',
     userInfo: {},
@@ -165,7 +166,7 @@ Page({
       });
     }else{
       wx.navigateTo({
-        url: '/pages/login/login',
+        url: '/pages/login/login?redirectUrl=' + encodeURIComponent('/pages/home/index'),
       });
     } 
   },
@@ -176,10 +177,16 @@ Page({
     ]);
     console.log(cardRes)
     setTimeout(() => {
+      // 拆分为两列
+      const columns = [[], []];
+      cardRes.list.forEach((item, idx) => {
+        columns[idx % 2].push(item);
+      });
       this.setData({
         enable: false,
         cardInfo: cardRes.list,
         swiperList: cardRes.list[0].images,
+        columns,
       });
     }, 1500);
 

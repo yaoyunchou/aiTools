@@ -19,7 +19,7 @@
   <button class="generate-btn" bindtap="onGenerate" loading="{{loading}}" loading-text="生成中..." disabled="{{loading}}" >生成表情包</button>
 
   <scroll-view class="result-section" scroll-y="true">
-    <view class="result-label">生成结果：</view>
+    <view class="result-label">生成结果：<text class="result-label-text">长按生成图片可以下载和分享哟！</text></view>
     <view class="result-list">
       <t-image wx:for="{{images}}" wx:key="index" src="{{item}}" class="result-img" mode="aspectFill"    show-menu-by-longpress />
     </view>

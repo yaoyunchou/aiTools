@@ -1,4 +1,5 @@
 import { drawCanvas2d } from './canvas'
+import request from '~/api/request'
 import baseConfig from './config'
 
 Page({
@@ -8,7 +9,7 @@ Page({
     titleText: '连续早起',
     subtitleText: '今日早起',
     descText: '你笑时\n雷声温柔，暴雨无声',
-    qrcodeUrl: '', // 二维码图片url
+    qrcodeUrl: 'https://cdn.xfysj.top/zaoan/qrcode/zaoancode.jpg', // 二维码图片url
     showQrcode: true,
     showPreview: false,
     activeTab: 'image', // 当前tab
@@ -21,23 +22,45 @@ Page({
     textColor: '#fff', // 新增，默认白色
     showCropper: false, // 新增
     cropperSrc: '', // 新增
+    // 新增显示配置
+    showTitleText: true,
+    showSubtitleText: true,
+    showDescText: true,
+    showAvatar: true,
+    showDay: true,
+    showQrcode: true,
   },
 
   async onLoad(option) {
     const { time, continuousCheckInCount } = option
+    const userInfo = wx.getStorageSync('userInfo')
+
     if(time && continuousCheckInCount) {
       this.setData({
           day: continuousCheckInCount,
           timeStr: time
       })
     }
-    // 可在此初始化主图片、二维码等
-    const userInfo = wx.getStorageSync('userInfo')
-    this.setData({
+    const newData = {
       mainImage: 'https://s.coze.cn/t/fy2LU3qEpD8/',
-      // qrcodeUrl: '/assets/default-qrcode.png',
       avatar: userInfo.avatar
-    }, this.initCanvas);
+    }
+    // 可在此初始化主图片、二维码等
+    // 获取图鉴图片信息
+    const baseImagesRes = await request('/api/v1/file-resource/recommend/list?page=1&pageSize=1000')
+    console.log(baseImagesRes)
+    if(baseImagesRes.code === 0) {
+      const baseImages = baseImagesRes.data.list.map(item => item.url)
+      newData.images = baseImages
+      newData.scene = baseImagesRes.data.scene
+      newData.descTextOptions = baseImagesRes.data.descTextOptions || []
+      if(newData.scene !== '早安') {
+        newData.titleText="晚上连续打卡"
+        newData.subtitleText = '晚安, 好梦'
+      }
+    }
+
+    this.setData(newData, this.initCanvas);
     // 检查是今天已经打过卡了， 如果没有打卡，则调用接口打卡。
   },
 
@@ -210,5 +233,11 @@ Page({
   },
   onCropperCancel() {
     this.setData({ showCropper: false });
+  },
+  onSwitchChange(e) {
+    const key = e.currentTarget.dataset.key;
+    this.setData({
+      [key]: e.detail.value
+    }, this.initCanvas);
   },
 }); 

@@ -13,6 +13,14 @@ Page({
     },
     radioValue: '',
   },
+  
+  onLoad(options) {
+    const { redirectUrl } = options
+    console.log('redirectUrl', decodeURIComponent(redirectUrl)) 
+    this.setData({
+      redirectUrl: decodeURIComponent(redirectUrl)
+    })
+  },
 
   /* 自定义功能函数 */
   changeSubmit() {
@@ -109,6 +117,7 @@ Page({
       
         // 返回原页面
         if (this.data.redirectUrl) {
+          console.log('this.data.redirectUrl', this.data.redirectUrl)
           const barUrlList = ['/pages/home/index', '/pages/my/index', '/pages/create/index'];
           const redirectUrl = unescape(this.data.redirectUrl);
           if(barUrlList.includes(redirectUrl)) {
@@ -134,6 +143,7 @@ Page({
         icon: 'none'
       });
     } finally {
+      console.log('finally')
       wx.hideLoading();
     }
   }

@@ -10,22 +10,26 @@
           loadingTexts="{{['下拉刷新', '松手刷新', '正在刷新', '刷新完成']}}"
         >
           <view class="home-card-list">
-            <t-swiper
-              list="{{swiperList}}"
-              navigation="{{ { type: 'dots-bar' } }}"
-              height="488rpx"
-              style="width: 340rpx"
-            />
-            <card
-              wx:for="{{cardInfo}}"
-              wx:key="index"
-              desc="{{item.prompt}}"
-              url="{{item.images[0]}}"
-              tags="{{[]}}"
-              index="{{index}}"
-              bind:cardtap="onCardTap"
-              bind:sharetap="onShareTap"
-            />
+          
+            <view class="masonry-col" wx:for="{{columns}}" wx:for-item="itemList" wx:key="col" wx:index="index">
+              <t-swiper
+                list="{{swiperList}}"
+                wx:if="{{index === 0}}"
+                navigation="{{ { type: 'dots-bar' } }}"
+                height="488rpx"
+                style="width: 340rpx"
+              />
+              <card
+                wx:for="{{itemList}}"
+                wx:key="index"
+                url="{{item.images[0]}}"
+                desc="{{item.prompt}}"
+                tags="{{[]}}"
+                index="{{index}}"
+                bind:cardtap="onCardTap"
+                bind:sharetap="onShareTap"
+              />
+            </view>
           </view>
         </t-pull-down-refresh>
       </t-tab-panel>
