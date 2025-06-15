@@ -13,6 +13,7 @@
     "t-tag": "tdesign-miniprogram/tag/tag",
     "nav": "/components/nav",
     "t-action-sheet": "tdesign-miniprogram/action-sheet/action-sheet",
-    "image-cropper-modal": "/components/image-cropper-modal/index"
+    "image-cropper-modal": "/components/image-cropper-modal/index",
+    "t-image-viewer": "tdesign-miniprogram/image-viewer/image-viewer"   
   }
 }

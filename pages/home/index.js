@@ -227,4 +227,30 @@ Page({
       url: '/pages/release/index',
     });
   },
+   //  link
+   onLink(data) {
+    console.log(data,'-------------data')
+    const id = data.currentTarget.id
+    const url = `/api/v1/creations/${id}/like`
+    // 调用接口
+    request(`/api/v1/creations/${id}/like`).then((res) => {
+      console.log(res,'-------------res')
+    })
+  },
+  // star
+  onStar(data) {
+    console.log(data,'-------------data')
+    const id = data.currentTarget.id
+    const url = `/api/v1/creations/${id}/collect`
+    // 调用接口
+    request(url,'POST').then((res) => {
+      console.log(res,'-------------res') 
+      if(res.code === 0) {
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'none'
+        });
+      }
+    })
+  },
 });

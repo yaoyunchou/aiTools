@@ -6,10 +6,15 @@
       <t-tag wx:for="{{tags}}" wx:key="index" size="small" variant="light" theme="{{item.theme}}">{{item.text}}</t-tag>
     </view>
   </view>
-    <button open-type="share" class="home-card__share" catchtap="onShareTap">
+  <view class="home-card__actions">
+    <!-- <button class="home-card__action" bindtap="onLikeTap">
+      <t-icon name="heart" size="24rpx" color="#ff4d4f" />
+    </button> -->
+    <button class="home-card__action" bindtap="onFavTap" >
+      <t-icon name="star" size="24rpx" color="#faad14" />
+    </button>
+    <button open-type="share" class="home-card__action" catchtap="onShareTap">
       <t-icon name="share" size="24rpx" color="#0052d9" />
     </button>
-    <!-- <button open-type="contact" class="home-card__share" >
-      <t-icon name="share" size="24rpx" color="#0052d9" />
-    </button> -->
+  </view>
 </view>

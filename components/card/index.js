@@ -13,5 +13,13 @@ Component({
     onShareTap() {
       this.triggerEvent('sharetap', { index: this.properties.index });
     },
+    onLikeTap() {
+      console.log('onLikeTap', this.properties.index);
+      this.triggerEvent('likeTap', { ...this.properties });
+    },
+    onFavTap() {
+      console.log('onFavTap', this.properties.index);
+      this.triggerEvent('favTap', { ... this.propertieS });
+    },
   },
 });

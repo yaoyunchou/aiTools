@@ -31,11 +31,32 @@
     bottom: 16rpx;
     width: 48rpx;
     height: 48rpx;
-    border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  }
+
+  &__actions {
+    position: absolute;
+    right: 16rpx;
+    bottom: 16rpx;
+    display: flex;
+    flex-direction: row;
+    gap: 16rpx;
+    z-index: 2;
+  }
+
+  &__action {
+    width: 48rpx;
+    height: 48rpx;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 0;
   }
 }

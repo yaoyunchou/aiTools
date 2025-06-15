@@ -24,10 +24,13 @@
                 wx:key="index"
                 url="{{item.images[0]}}"
                 desc="{{item.prompt}}"
+                id="{{item.id}}"
                 tags="{{[]}}"
                 index="{{index}}"
                 bind:cardtap="onCardTap"
                 bind:sharetap="onShareTap"
+                bind:favTap="onStar"
+                bind:likeTap="onLink"
               />
             </view>
           </view>
@@ -39,11 +42,13 @@
             wx:for="{{focusCardInfo}}"
             wx:key="index"
             desc="{{item.prompt}}"
-            url="{{item.images[0]}}"
+            id="{{item.id}}"
             tags="{{[]}}"
             index="{{index}}"
             bind:cardtap="onCardTap"
             bind:sharetap="onShareTap"
+                 bind:favTap="onStar"
+                bind:likeTap="onLink"
           />
         </view>
       </t-tab-panel>
