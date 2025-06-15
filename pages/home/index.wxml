@@ -41,14 +41,14 @@
           <card
             wx:for="{{focusCardInfo}}"
             wx:key="index"
+            url="{{item.images[0]}}"
             desc="{{item.prompt}}"
             id="{{item.id}}"
             tags="{{[]}}"
             index="{{index}}"
             bind:cardtap="onCardTap"
             bind:sharetap="onShareTap"
-                 bind:favTap="onStar"
-                bind:likeTap="onLink"
+            type="follow"
           />
         </view>
       </t-tab-panel>

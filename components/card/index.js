@@ -4,6 +4,8 @@ Component({
     desc: String,
     tags: Array,
     index: Number,
+    type: String,
+    id: String,
   },
   data: {},
   methods: {

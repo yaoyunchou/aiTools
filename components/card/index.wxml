@@ -10,7 +10,7 @@
     <!-- <button class="home-card__action" bindtap="onLikeTap">
       <t-icon name="heart" size="24rpx" color="#ff4d4f" />
     </button> -->
-    <button class="home-card__action" bindtap="onFavTap" >
+    <button wx:if="{{type !== 'follow'}}" class="home-card__action" bindtap="onFavTap" >
       <t-icon name="star" size="24rpx" color="#faad14" />
     </button>
     <button open-type="share" class="home-card__action" catchtap="onShareTap">
