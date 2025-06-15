@@ -174,6 +174,7 @@ Page({
       avatar: imgPath
     });
     const that = this
+    console.log(imgPath,'-------------imagePath')
     wx.uploadFile({
       url: 'https://nestapi.xfysj.top/xcx/api/v1/file/upload/no-auth', //仅为示例，非真实的接口地址
       filePath:imgPath,

@@ -4,6 +4,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/create/remove-bg/index",
+          "pathName": "pages/create/remove-bg/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/create/face-swap/index",
+          "pathName": "pages/create/face-swap/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/create/index",
           "pathName": "pages/create/index",
           "query": "",

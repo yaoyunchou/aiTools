@@ -18,30 +18,30 @@ Page({
         desc: `在时间范围内的第一次点击为打卡开始时间`,
         path: '/pages/create/template-image/index'
       },
-      {
-        id: 'editImage',
-        title: '修改图片(开发中）',
-        icon: 'image',
-        desc: '你说，我改！',
-        path: '/pages/create/edit-image/index'
-      },
+      // {
+      //   id: 'editImage',
+      //   title: '修改图片(开发中）',
+      //   icon: 'image',
+      //   desc: '你说，我改！',
+      //   path: '/pages/create/edit-image/index'
+      // },
       {
         id: 'remove-bg',
-        title: '图片去背景（开发中）',
+        title: '图片编辑',
         icon: 'image',
-        desc: '一键去除图片背景',
+        desc: '一键去除图片背景， 优化， 扩展图片',
         path: '/pages/create/remove-bg/index'
       },
       {
         id: 'face-swap',
-        title: '照片换脸（开发中）',
+        title: '照片换脸',
         icon: 'user',
-        desc: '轻松实现照片换脸',
+        desc: '轻松实现照片换脸， 图片换背景',
         path: '/pages/create/face-swap/index'
       },
       {
         id: 'enhance',
-        title: '照片变清晰（开发中）',
+        title: '照片变清晰',
         icon: 'image',
         desc: '提升照片清晰度',
         path: '/pages/create/enhance/index'

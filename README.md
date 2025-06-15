@@ -163,6 +163,15 @@ npm install
    - 适配新 API，图片路径获取方式由 `res.tempFilePaths[0]` 改为 `res.tempFiles[0].tempFilePath`。
    - 参考：[微信小程序 chooseImage 停止维护公告](https://developers.weixin.qq.com/miniprogram/dev/api/media-picture/wx.chooseImage.html)
 
+### 2024-06-10
+1. 【UI优化】AI创作工具 - 图片增强、去背景、换脸（pages/create/enhance、remove-bg、face-swap）：
+   - 上传图片区域，未上传时中间显示加号按钮，点击加号可上传图片，上传后显示图片本身。
+   - 优化上传交互体验，提升用户指引。
+2. 【功能优化】AI创作工具 - 换脸（pages/create/face-swap）：
+   - 支持假tab切换"换脸/换背景"，切换时自动清空原图和参考图。
+   - tab下方增加功能说明tip：换脸需真人图，换背景推荐背景图。
+   - 操作按钮合并为"确定"，根据tab自动调用对应功能。
+
 ## 开发预览
 ### 目录结构（TODO: 生成目录结构树）
 

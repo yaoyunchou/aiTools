@@ -1,3 +1,39 @@
-<view class="container">
-  <text class="title">{{title}}</text>
+<view class="remove-bg-container">
+  <!-- 优化tab切换布局 -->
+  <view class="tab-group">
+    <view class="tab-item {{tab === 'bg' ? 'active' : ''}}" data-tab="bg" bindtap="onTabChange">去背景</view>
+    <view class="tab-item {{tab === 'pretty' ? 'active' : ''}}" data-tab="pretty" bindtap="onTabChange">美颜</view>
+    <view class="tab-item {{tab === 'expand' ? 'active' : ''}}" data-tab="expand" bindtap="onTabChange">图片扩展</view>
+  </view>
+   <!-- 功能说明tip -->
+  <view class="tab-tip">{{tabTips[tab]}}</view>
+  <view class="row-flex">
+    <view class="image-section">
+      <text class="section-title">上传原图</text>
+      <block wx:if="{{!originalImage}}">
+        <view class="upload-image upload-plus" bindtap="onChooseOriginal">
+          <text class="plus-icon">+</text>
+        </view>
+      </block>
+      <block wx:else>
+        <image src="{{originalImage}}" mode="aspectFit" class="upload-image" bindtap="onChooseOriginal"/>
+      </block>
+    </view>
+  </view>
+  <view class="button-group">
+    <button class="action-btn"  loading="{{loading}}" disabled="{{loading}}" bindtap="onConfirm">确认</button>
+  </view>
+  <view class="result-section" wx:if="{{resultImage}}">
+    <view class="result-title-wrap">
+      <text class="result-title">结果图</text>
+      <text class="tip">长按图片可分享</text>
+    </view>
+    <image src="{{resultImage}}" mode="aspectFit" class="result-image" show-menu-by-longpress bindtap="previewImage" />
+    <t-image-viewer
+      visible="{{visible}}"
+      closeBtn="{{true}}"
+      images="{{[resultImage]}}"
+      bind:close="onClose"
+    ></t-image-viewer>
+  </view>
 </view> 

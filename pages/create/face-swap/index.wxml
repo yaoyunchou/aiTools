@@ -1,3 +1,49 @@
-<view class="container">
-  <text class="title">{{title}}</text>
-</view> 
+<view class="face-swap-container">
+  <!-- 假tab切换 -->
+  <view class="fake-tab-group">
+    <view class="fake-tab {{tab === 'face' ? 'active' : ''}}" data-tab="face" bindtap="onTabChange">换脸</view>
+    <view class="fake-tab {{tab === 'bg' ? 'active' : ''}}" data-tab="bg" bindtap="onTabChange">换背景</view>
+  </view>
+  <!-- 功能说明tip -->
+  <view class="tab-tip">{{tabTips[tab]}}</view>
+  <view class="row-flex">
+    <view class="image-section">
+      <text>原图</text>
+      <block wx:if="{{!originalImage}}">
+        <view class="upload-image upload-plus" bindtap="onChooseOriginal">
+          <text class="plus-icon">+</text>
+        </view>
+      </block>
+      <block wx:else>
+        <image src="{{originalImage}}" mode="aspectFit" class="upload-image" bindtap="onChooseOriginal"/>
+      </block>
+    </view>
+    <view class="image-section">
+      <text>参考图</text>
+      <block wx:if="{{!referenceImage}}">
+        <view class="upload-image upload-plus" bindtap="onChooseReference">
+          <text class="plus-icon">+</text>
+        </view>
+      </block>
+      <block wx:else>
+        <image src="{{referenceImage}}" mode="aspectFit" class="upload-image" bindtap="onChooseReference"/>
+      </block>
+    </view>
+  </view>
+  <view class="button-group">
+    <button class="confirm-btn" loading="{{loading}}" disabled="{{!loading}}" bindtap="onConfirm">确定</button>
+  </view>
+  <view class="result-section" wx:if="{{resultImage}}">
+    <view class="result-title">
+      <text>结果图</text>
+      <text class="tip">长按图片可分享</text>
+    </view>
+    <image src="{{resultImage}}" mode="aspectFit" class="result-image" show-menu-by-longpress bindtap="previewImage" />
+    <t-image-viewer
+      visible="{{visible}}"
+      closeBtn="{{true}}"
+      images="{{[resultImage]}}"
+      bind:close="onClose"
+    ></t-image-viewer>
+  </view>
+</view>

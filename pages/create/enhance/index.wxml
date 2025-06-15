@@ -1,3 +1,29 @@
-<view class="container">
-  <text class="title">{{title}}</text>
+<view class="remove-bg-container">
+  <view class="row-flex">
+    <view class="image-section">
+      <text>上传原图</text>
+      <block wx:if="{{!originalImage}}">
+        <view class="upload-image upload-plus" bindtap="onChooseOriginal">
+          <text class="plus-icon">+</text>
+        </view>
+      </block>
+      <block wx:else>
+        <image src="{{originalImage}}" mode="aspectFit" class="upload-image" bindtap="onChooseOriginal"/>
+      </block>
+    </view>
+  </view>
+  <view class="button-group">
+    <button class="action-btn" disabled="{{bgLoading || beautifyLoading || expandLoading}}" bindtap="makePictureClear" loading="{{bgLoading}}">图片变清晰</button>
+  </view>
+  <view class="result-section" wx:if="{{resultImage}}">
+    <text class="result-title">结果图</text>
+    <image src="{{resultImage}}" mode="aspectFit" class="result-image" show-menu-by-longpress bindtap="previewImage" />
+    <text class="tip">长按图片可分享</text>
+    <t-image-viewer
+      visible="{{visible}}"
+      closeBtn="{{true}}"
+      images="{{[resultImage]}}"
+      bind:close="onClose"
+    ></t-image-viewer>
+  </view>
 </view> 

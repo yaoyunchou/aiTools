@@ -38,8 +38,13 @@ function request(url, method = 'GET', data = {}) {
             const currentPage = pages[pages.length - 1]
             const currentPageUrl = currentPage.route
             console.log('currentPageUrl!!', currentPageUrl)
+            if(currentPageUrl === 'pages/login/login') {
+              reject(res);
+              return;
+            }
+
             wx.navigateTo({
-              url: '/pages/login/login?redirectUrl=' + encodeURIComponent(currentPageUrl)
+              url: '/pages/login/login?redirectUrl=' + encodeURIComponent('/'+currentPageUrl)
             });
             reject(res);
           } else {
